@@ -13,7 +13,15 @@ export class UserService {
   ) {}
 
   create(createUserDto: CreateUserDto) {
-    return this.userRepository.save(createUserDto);
+    const { firstName, lastName, email, password } = createUserDto;
+
+    const user = this.userRepository.save({
+      firstName,
+      lastName,
+      email,
+      password,
+    });
+    return { user };
   }
 
   findAll() {
